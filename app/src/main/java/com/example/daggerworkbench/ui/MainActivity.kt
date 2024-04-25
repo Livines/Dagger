@@ -101,6 +101,7 @@ class MainActivity : AppCompatActivity(),Communicator {
         Thus, caller/parent coroutine would get wrong value returned by child coroutine.
          */
         CoroutineScope(Dispatchers.Main).launch {
+            val counter=0
             val result = downloadUserData_unstructured()
             Toast.makeText(applicationContext, "Result : $result", Toast.LENGTH_LONG).show()
         }
