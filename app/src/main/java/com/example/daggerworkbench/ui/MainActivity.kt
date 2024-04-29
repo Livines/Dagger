@@ -2,6 +2,7 @@ package com.example.daggerworkbench.ui
 
 import android.app.Fragment
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -58,6 +59,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.lang.ref.WeakReference
+import java.util.Locale
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(),Communicator {
@@ -188,6 +190,14 @@ class MainActivity : AppCompatActivity(),Communicator {
         System.gc()
         println("=========DMMMM"+obj.get())
 
+    }
+    fun setLocale(languageCode: String, context: Context) {
+        val locale = Locale(languageCode)
+        Locale.setDefault(locale)
+        val resources = context.resources
+        val configuration = Configuration(resources.configuration)
+        configuration.setLocale(locale)
+        resources.updateConfiguration(configuration, resources.displayMetrics)
     }
 
     override fun onAttachFragment(fragment: androidx.fragment.app.Fragment) {
@@ -704,6 +714,10 @@ fun main(args: Array<String>)
         .also { println("Sorting the list") }
         .sort()
     println(numberList)
+}
+private fun featureCommits(){
+    println("Feature commit 1")
+
 }
 
 
